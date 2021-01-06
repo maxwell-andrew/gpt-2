@@ -8,12 +8,20 @@ import tensorflow as tf
 
 import model, sample, encoder
 
+rawtext = """Line: I love you more than Christmas because I can't hold Christmas.
+
+Line: I love you more than Christmas because I can wake up to you every morning.
+
+Line: I love you more than Christmas because them titties girl, damn.
+
+Line: """
+
 def interact_model(
-    model_name='124M',
+    model_name='774M',
     seed=None,
-    nsamples=1,
+    nsamples=4,
     batch_size=1,
-    length=None,
+    length=280,
     temperature=1,
     top_k=0,
     top_p=1,
@@ -70,7 +78,7 @@ def interact_model(
         saver.restore(sess, ckpt)
 
         while True:
-            raw_text = input("Model prompt >>> ")
+            raw_text = rawtext
             while not raw_text:
                 print('Prompt should not be empty!')
                 raw_text = input("Model prompt >>> ")
